@@ -1,0 +1,34 @@
+{
+  "BBC": {
+    "link": "http://www.bbc.com/"
+  }
+  ,
+  "The Guardian": {
+    "rss": "https://www.theguardian.com/uk/rss",
+    "link": "https://www.theguardian.com/us"
+  },
+  "Fox News": {
+    "link": "http://www.foxnews.com/"
+  },
+  "NBC News": {
+    "link": "http://www.nbcnews.com/"
+  },
+  "Washington Post": {
+      "link": "https://www.washingtonpost.com/"
+  },
+  "ESPN":{
+    "link": "http://www.espn.com/"
+  },
+  "Zee News" :{
+      "link" : "http://zeenews.india.com/"
+  },
+  "ABC News": {
+  "link" : "http://www.abc.net.au/news/newschannel/"
+  },
+  "DD News":{
+        "link": "http://www.ddinews.gov.in/"
+  },
+  "Bloomberg":{
+      "link": "https://www.bloombergquint.com/"
+  }
+}
