@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .results div {
+            margin-bottom: 10px;
+        }
+        .results .function {
+            font-weight: bold;
+        }
+        .results .score {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coding Assistant</h1>
+    <form id="searchForm">
+        <label for="query">Enter your search query:</label><br>
+        <input type="text" id="query" name="query" required><br>
+        <button type="submit">Search</button>
+    </form>
+
+    <div class="results" id="results"></div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const query = document.getElementById('query').value;
+
+            fetch('http://127.0.0.1:5000/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = '';
+
+                for (const func in data) {
+                    const functionDiv = document.createElement('div');
+                    functionDiv.className = 'function';
+                    functionDiv.textContent = `Function: ${func}`;
+
+                    const scoreDiv = document.createElement('div');
+                    scoreDiv.className = 'score';
+                    scoreDiv.textContent = `Relevance Score: ${data[func]}`;
+
+                    resultsDiv.appendChild(functionDiv);
+                    resultsDiv.appendChild(scoreDiv);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
